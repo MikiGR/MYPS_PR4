@@ -27,7 +27,7 @@ public class OnePointCrossoverTest {
 
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
+    @DisplayName("Probar el cruce con parent1 más corto que parent2. ")
     public void crossover_parent1LongerThanParent2_throwException() {
         int[] parent1 = {1,2,4};
         int[] parent2 = {1,2,4,5};
@@ -38,7 +38,7 @@ public class OnePointCrossoverTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
+    @DisplayName("Probar el cruce con parent1 más largo que parent2. ")
     public void crossover_parent2LongerThanParent1_throwException() {
         int[] parent1 = {1,2,4};
         int[] parent2 = {1,2,};
@@ -49,7 +49,7 @@ public class OnePointCrossoverTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
+    @DisplayName("Probar el cruce con parent1 nulo. ")
     public void crossover_parent1Null_throwException() {
         int[] parent1 = null;
         int[] parent2 = {1,2,4,5};
@@ -60,7 +60,7 @@ public class OnePointCrossoverTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
+    @DisplayName("Probar el cruce con parent2 nulo")
     public void crossover_parent2Null_throwException() {
         int[] parent1 = {1,2,4};
         int[] parent2 = null;
@@ -71,7 +71,7 @@ public class OnePointCrossoverTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
+    @DisplayName("Probar el cruce con parent1 vacío")
     public void crossover_parent1Empty_throwException() {
         int[] parent1 = {};
         int[] parent2 = {1,2,4};
@@ -82,7 +82,7 @@ public class OnePointCrossoverTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
+    @DisplayName("Probar el cruce con parent2 vacío")
     public void crossover_parent2Empty_throwException() {
         int[] parent1 = {1,2,3};
         int[] parent2 = {};

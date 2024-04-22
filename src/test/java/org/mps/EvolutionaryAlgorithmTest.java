@@ -140,7 +140,7 @@ public class EvolutionaryAlgorithmTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
+    @DisplayName("Probar setear con el parametro SelectionOperator válido. Comprueba el get también. ")
     public void setSelectionOperator_returnTrue() throws EvolutionaryAlgorithmException{
         SelectionOperator so = new TournamentSelection(1);
         evolutionaryAlgorithm.setSelectionOperator(so);
@@ -148,7 +148,7 @@ public class EvolutionaryAlgorithmTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
+    @DisplayName("Probar setear con el parametro CrossoverOperator válido. Comprueba el get también. ")
     public void setCrossoverOperator_returnTrue() throws EvolutionaryAlgorithmException{
         CrossoverOperator co = new OnePointCrossover();
         evolutionaryAlgorithm.setCrossoverOperator(co);
@@ -156,7 +156,7 @@ public class EvolutionaryAlgorithmTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
+    @DisplayName("Probar setear con el parametro mutationOperator válido. Comprueba el get también. ")
     public void setMutationnOperator_returnTrue() throws EvolutionaryAlgorithmException{
         MutationOperator mo = new SwapMutation();
         evolutionaryAlgorithm.setMutationOperator(mo);
@@ -165,8 +165,8 @@ public class EvolutionaryAlgorithmTest {
 
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
-    public void setSelectionOperator_throwException(){
+    @DisplayName("Probar setear con el parametro SelectionOperator nulo. ")
+    public void setSelectionOperator_selectionOperatorNull_throwException(){
         SelectionOperator so =null;
         assertThrows(EvolutionaryAlgorithmException.class, () -> {
             evolutionaryAlgorithm.setSelectionOperator(so);
@@ -174,8 +174,8 @@ public class EvolutionaryAlgorithmTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
-    public void setCrossoverOperator_throwException(){
+    @DisplayName("Probar setear con el parametro CrossoverOperator nulo. ")
+    public void setCrossoverOperator_crossoverOperatorNull_throwException(){
         CrossoverOperator co = null;
         assertThrows(EvolutionaryAlgorithmException.class, () -> {
             evolutionaryAlgorithm.setCrossoverOperator(co);
@@ -183,12 +183,11 @@ public class EvolutionaryAlgorithmTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
-    public void setMutationnOperator_throwException() throws EvolutionaryAlgorithmException{
+    @DisplayName("Probar setear con el parametro mutationOperator nulo. ")
+    public void setMutationnOperator_mutationOperatorNull_throwException() throws EvolutionaryAlgorithmException{
         MutationOperator mo = null;
         assertThrows(EvolutionaryAlgorithmException.class, () -> {
             evolutionaryAlgorithm.setMutationOperator(mo);
         });
     }
-
 }

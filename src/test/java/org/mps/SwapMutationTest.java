@@ -27,7 +27,7 @@ public class SwapMutationTest {
 
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
+    @DisplayName("Probar la mutación con un individuo nulo. ")
     public void mutation_individualNull_throwException() {
         int[] individual = null;
        
@@ -37,7 +37,7 @@ public class SwapMutationTest {
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
+    @DisplayName("Probar la mutación con un individuo vacío. ")
     public void mutation_individualEmpty_throwException() {
         int[] individual = {};
        
@@ -47,12 +47,10 @@ public class SwapMutationTest {
     }   
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
+    @DisplayName("Probar la mutacion con un individuo válido.")
     public void mutation_individualBiggerThanZero_returnTrue() throws EvolutionaryAlgorithmException{
         int[] individual = {1,2,3};
         int[] mutated = sm.mutate(individual);
         assertEquals(individual.length,mutated.length);
-        
-
     } 
 }

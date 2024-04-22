@@ -1,3 +1,7 @@
+/*
+ * @Author: Miguel Galdeano Rodríguez
+ * @Author: Pablo León Vázquez
+ */
 package org.mps;
 
 import org.mps.crossover.CrossoverOperator;
@@ -48,7 +52,11 @@ public class EvolutionaryAlgorithm {
         return mutationOperator;
     }
 
-    public void setMutationOperator(MutationOperator mutationOperator) {
+    // NO SE COMPROBABA QUE EL PARAMETRO NO FUESE NULO 
+    public void setMutationOperator(MutationOperator mutationOperator) throws EvolutionaryAlgorithmException {
+        if(mutationOperator==null){
+            throw new EvolutionaryAlgorithmException("Argumento nulo");
+        }
         this.mutationOperator = mutationOperator;
     }
 
@@ -107,7 +115,11 @@ public class EvolutionaryAlgorithm {
         return this.selectionOperator;
     }
 
-    public void setSelectionOperator(SelectionOperator selectionOperator) {
+    // NO SE COMPROBABA SI EL PARAMETRO ES NULO
+    public void setSelectionOperator(SelectionOperator selectionOperator) throws EvolutionaryAlgorithmException {
+        if(selectionOperator == null){
+            throw new EvolutionaryAlgorithmException("Argumento nulo");
+        }
         this.selectionOperator = selectionOperator;
     }
 
@@ -115,7 +127,11 @@ public class EvolutionaryAlgorithm {
         return this.crossoverOperator;
     }
 
-    public void setCrossoverOperator(CrossoverOperator crossoverOperator) {
+    // NO SE COMPROBABA SI EL PARAMETRO ES NULO
+    public void setCrossoverOperator(CrossoverOperator crossoverOperator) throws EvolutionaryAlgorithmException {
+        if(crossoverOperator==null){
+            throw new EvolutionaryAlgorithmException("Argumento nulo");
+        }
         this.crossoverOperator = crossoverOperator;
     }
 

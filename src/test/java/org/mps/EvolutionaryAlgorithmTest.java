@@ -1,15 +1,26 @@
+/*
+ * @Author: Miguel Galdeano Rodríguez
+ * @Author: Pablo León Vázquez
+ */
 package org.mps;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertInstanceOf;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.Random;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
+import org.mps.selection.SelectionOperator;
 import org.mps.selection.TournamentSelection;
+import org.mps.crossover.CrossoverOperator;
 import org.mps.crossover.OnePointCrossover;
+import org.mps.mutation.MutationOperator;
 import org.mps.mutation.SwapMutation;
 import org.mps.EvolutionaryAlgorithm;
 
@@ -59,6 +70,14 @@ public class EvolutionaryAlgorithmTest {
         });
     }
 
+    @Test
+    @DisplayName("Vamos a probar a poner como operador de selección con un valor negativo")
+    public void EvolutionaryAlgorithm_TournamentSelectionIsNull_throwException() {
+        assertThrows(EvolutionaryAlgorithmException.class, ()-> {
+            ts = new TournamentSelection(-1);
+            evolutionaryAlgorithm = new EvolutionaryAlgorithm(ts, sm, opc);
+        });
+    }
 
     @Test
     @DisplayName("Probar la optimización válida de una población")
@@ -121,37 +140,55 @@ public class EvolutionaryAlgorithmTest {
     }
 
     @Test
-    @DisplayName("Vamos a probar a poner como operador de selección con un valor negativo")
-    public void EvolutionaryAlgorithm_TournamentSelectionIsNull_throwException() {
-        assertThrows(EvolutionaryAlgorithmException.class, ()-> {
-            ts = new TournamentSelection(-1);
-            evolutionaryAlgorithm = new EvolutionaryAlgorithm(ts, sm, opc);
+    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
+    public void setSelectionOperator_returnTrue() throws EvolutionaryAlgorithmException{
+        SelectionOperator so = new TournamentSelection(1);
+        evolutionaryAlgorithm.setSelectionOperator(so);
+       assertEquals(so,evolutionaryAlgorithm.getSelectionOperator());
+    }
+
+    @Test
+    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
+    public void setCrossoverOperator_returnTrue() throws EvolutionaryAlgorithmException{
+        CrossoverOperator co = new OnePointCrossover();
+        evolutionaryAlgorithm.setCrossoverOperator(co);
+       assertEquals(co,evolutionaryAlgorithm.getCrossoverOperator());
+    }
+
+    @Test
+    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
+    public void setMutationnOperator_returnTrue() throws EvolutionaryAlgorithmException{
+        MutationOperator mo = new SwapMutation();
+        evolutionaryAlgorithm.setMutationOperator(mo);
+       assertEquals(mo,evolutionaryAlgorithm.getMutationOperator());
+    }
+
+
+    @Test
+    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
+    public void setSelectionOperator_throwException(){
+        SelectionOperator so =null;
+        assertThrows(EvolutionaryAlgorithmException.class, () -> {
+            evolutionaryAlgorithm.setSelectionOperator(so);
         });
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones nulas en medio para probar el select del ts")
-    public void optimize_WithValidPoblationExceptSomeNullForSelectInTS_throwException() {
-        int[][] population = {
-            {1, 2, 3, 4, 5},
-            null, 
-            {11, 12, 13, 14, 15}
-        };
+    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
+    public void setCrossoverOperator_throwException(){
+        CrossoverOperator co = null;
         assertThrows(EvolutionaryAlgorithmException.class, () -> {
-            evolutionaryAlgorithm.optimize(population);
+            evolutionaryAlgorithm.setCrossoverOperator(co);
         });
     }
 
     @Test
-    @DisplayName("Probar la optimización con una población válida pero con poblaciones vacías en medio para probar el select del ts")
-    public void optimize_WithValidPoblationExceptSomeEmptyForSelectInTS_throwException() {
-        int[][] population = {
-            {1, 2, 3, 4, 5},
-            {}, 
-            {11, 12, 13, 14, 15}
-        };
+    @DisplayName("Probar la optimización con una población válida pero con algunos nulos")
+    public void setMutationnOperator_throwException() throws EvolutionaryAlgorithmException{
+        MutationOperator mo = null;
         assertThrows(EvolutionaryAlgorithmException.class, () -> {
-            evolutionaryAlgorithm.optimize(population);
+            evolutionaryAlgorithm.setMutationOperator(mo);
         });
     }
+
 }

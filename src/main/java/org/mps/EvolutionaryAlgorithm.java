@@ -62,13 +62,13 @@ public class EvolutionaryAlgorithm {
 
     public int[][] optimize(int[][] population) throws EvolutionaryAlgorithmException {
 
-        if (population != null && population.length > 0 && population[0]!=null && population[0].length>0) {
+        //ERROR:EL BUCLE RECORRE EL ARRAY DE 2 EN 2. SE DEBE IMPONER QUE SEA PAR LA LONGITUD DE PARENT
+        if (population != null && population.length > 0 && population[0]!=null && population[0].length>0 && population.length % 2 == 0) {
             // Creamos una nueva población para los descendientes
             int[][] offspringPopulation = new int[population.length][population.length];
 
             // Aplicamos operadores de selección y cruce para generar descendientes
-            //POSIBLE ERROR. SUMA DOS Y PUEDE HACER INDEXOUTOFBOUNDS (HE AÑADIDO -1 EN LA CONDICIÓN)
-            for (int i = 0; i < population.length-1; i += 2) {
+            for (int i = 0; i < population.length; i += 2) {
                 // Seleccionamos dos individuos de la población actual
                 int[] parent1 = selectionOperator.select(population[i]);
                 int[] parent2 = selectionOperator.select(population[i + 1]);

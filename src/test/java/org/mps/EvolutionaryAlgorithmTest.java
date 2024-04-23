@@ -83,9 +83,10 @@ public class EvolutionaryAlgorithmTest {
     @DisplayName("Probar la optimización válida de una población")
     public void optimize_WithValidPoblation_returnTrue() throws EvolutionaryAlgorithmException {
         int[][] population = {
-                                {1, 2, 3, 4, 5},
-                                {6, 7, 8, 9, 10},
-                                {11, 12, 13, 14, 15}
+                                {1, 2, 3, 4},
+                                {6, 7, 8, 9},
+                                {11, 12, 13, 14},
+                                {51, 42, 33, 34}
                             };
         int originalLength = population.length;
         
@@ -118,8 +119,7 @@ public class EvolutionaryAlgorithmTest {
     public void optimize_WithValidPoblationExceptSomeEmpty_throwException() {
         int[][] population = {
             {},
-            {6, 7, 8, 9, 10},
-            {11, 12, 13, 14, 15}
+            {6, 7, 8, 9, 10}
         };
         assertThrows(EvolutionaryAlgorithmException.class, () -> {
             evolutionaryAlgorithm.optimize(population);
@@ -131,8 +131,7 @@ public class EvolutionaryAlgorithmTest {
     public void optimize_WithValidPoblationExceptSomeNull_throwException() {
         int[][] population = {
             null,
-            {6, 7, 8, 9, 10},
-            {11, 12, 13, 14, 15}
+            {6, 7, 8, 9, 10}
         };
         assertThrows(EvolutionaryAlgorithmException.class, () -> {
             evolutionaryAlgorithm.optimize(population);
